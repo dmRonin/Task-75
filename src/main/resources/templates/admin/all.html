@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+    <link href="https://fonts.googleapis.com/css2?family=LeoHand&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #e0e0e0, #ffffff);
+            font-family: 'LeoHand', cursive;
+            color: #262626;
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        header {
+            padding: 12px 0;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            background: linear-gradient(to top, rgba(224, 224, 224, 0.85), rgba(224, 224, 224, 0.0));
+            padding: 10px 0;
+            margin-top: auto;
+        }
+
+        h1 {
+            font-size: 2.875rem;
+            color: #323232;
+            margin-bottom: 30px;
+        }
+
+        .user-list {
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .user-list a {
+            color: #0095f6;
+            text-decoration: none;
+            margin: 5px 0;
+            font-size: 1.15rem;
+        }
+
+        .user-list a:hover {
+            text-decoration: underline;
+        }
+
+        .button {
+            background-color: #0095f6;
+            color: white;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.05rem;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background-color: #007bbf;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Users</h1>
+</header>
+
+<div class="user-list" th:each="user : ${users}">
+    <a th:href="@{/admin/{id}(id=${user.getId()})}"
+       th:text="${user.getUsername() + ', Age: ' + user.getAge() + ', Email: ' + user.getEmail() + ', ID: ' + user.getId()}">user
+    </a>
+</div>
+
+<hr/>
+<a href="admin/createUser" class="button">Create new person</a>
+<br/>
+<a class="button" href="#" th:href="@{/logout}">Log Out</a>
+
+<footer>
+    <p>@dm_ronin</p>
+    <p>Community Guidelines: Do not post inappropriate content, respect each other, credit sources.</p>
+</footer>
+</body>
+</html>
